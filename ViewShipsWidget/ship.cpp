@@ -10,10 +10,11 @@ Ship::Ship(QObject *parent) :
         image.scaledToHeight(shipsSize);
         image.scaledToWidth(shipsSize);
     }
-    numOfWays=0;
+
     angle = 0;     // Задаём угол поворота графического объекта
     setRotation(angle);     // Устанавилваем угол поворота графического объекта
-    ways=new QVector<Way*>();
+    //numOfWays=0;
+    //ways=new QVector<Way*>();
     //ways=(QLine*)malloc((numOfWays+1)* sizeof(QLine));
 
 }
@@ -39,12 +40,12 @@ void Ship::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
         polygon << QPoint(0,shipsSize/2) << QPoint(shipsSize/3,-shipsSize/2) << QPoint(-shipsSize/3,-shipsSize/2);
         painter->setBrush(Qt::red);     /// Устанавливаем кисть, которой будем отрисовывать объект
         painter->drawPolygon(polygon);  /// Рисуем треугольник по полигональной модели
-        qDebug()<<ways->size();
-        if(ways->size()!=0)
-            for(int i=0;i<ways->size();i++){
-                    qDebug()<<ways->at(i)->line->x1()<<" "<<ways->at(i)->line->x2()<<" "<<ways->at(i)->line->y1()<<" "<<ways->at(i)->line->y2();
-                    painter->drawLine(*ways->at(i)->line);
-            }
+//        qDebug()<<ways->size();
+//        if(ways->size()!=0)
+//            for(int i=0;i<ways->size();i++){
+//                    qDebug()<<ways->at(i)->line->x1()<<" "<<ways->at(i)->line->x2()<<" "<<ways->at(i)->line->y1()<<" "<<ways->at(i)->line->y2();
+//                    painter->drawLine(*ways->at(i)->line);
+//            }
 
         Q_UNUSED(option);
         Q_UNUSED(widget);
@@ -80,11 +81,11 @@ void Ship::slotGameTimer()
                                          * */
 
         qDebug()<<this->pos().x()<<" "<<this->pos().y();
-        Way* newWay = new Way();
-       newWay->line->setLine(oldx,oldy,this->pos().x(),this->pos().y());
-       ways->append(newWay);
-
-//        emit posChanged(oldx,oldy,this->pos().x(),this->pos().y());
+//        Way* newWay = new Way();
+//       newWay->line->setLine(oldx,oldy,this->pos().x(),this->pos().y());
+//       ways->append(newWay);
+        //emit sgnPosChanged();
+        emit posChanged(oldx,oldy,this->pos().x(),this->pos().y());
     }
     else if(GetAsyncKeyState(VK_DOWN)){
         double oldx = this->pos().x();
@@ -96,10 +97,11 @@ void Ship::slotGameTimer()
                                          * */
         qDebug()<<this->pos().x()<<" "<<this->pos().y();
 
-        Way* newWay = new Way();
-        newWay->line->setLine(oldx,oldy,this->pos().x(),this->pos().y());
-        ways->append(newWay);
-//        emit posChanged(oldx,oldy,this->pos().x(),this->pos().y());
+//        Way* newWay = new Way();
+//        newWay->line->setLine(oldx,oldy,this->pos().x(),this->pos().y());
+//        ways->append(newWay);
+        //emit sgnPosChanged();
+        emit  posChanged(oldx,oldy,this->pos().x(),this->pos().y());
     }
     else{
 //        angle+=10;

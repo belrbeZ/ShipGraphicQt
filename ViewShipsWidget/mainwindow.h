@@ -26,11 +26,11 @@ private:
     QVector<Ship*> *ships;  /// и треугольник
     Ship *ship;
     QTimer          *timer;
-    //QVector<Way*> *ways;
-    //int numOfWays;
+    QVector<Way*> *ways;
+    int numOfWays;
 public slots:
     void addShip();
-    //void addWay(Ui::MainWindow*,double oldx,double oldy,double newx,double  newy );
+    void addWay(double oldx,double oldy,double newx,double  newy );
 };
 
 #endif // MAINWINDOW_H

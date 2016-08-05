@@ -34,12 +34,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ship->setPos(0,0);
     ships=new QVector<Ship*>();
     addShip();
-    //numOfWays=0;
-    //ways=new QVector<Way*>();
-    //for(int i=0;i<ships->size();i++)
-    //    connect(ships->at(i),SIGNAL(posChanged(Ui::MainWindow*,double,double,double,double)),this,SLOT(addWay(Ui::MainWindow*,double,double,double,double)));
+    numOfWays=0;
+    ways=new QVector<Way*>();
+    //QObject::connect(ship,SIGNAL(sgnPosChanged()),this,SLOT(addWay2()));
+    QObject::connect(ship,SIGNAL(posChanged(double,double,double,double)),this,SLOT(addWay(double,double,double,double)));
+
+    for(int i=0;i<ships->size();i++)
+        QObject::connect(ships->at(i),SIGNAL(posChanged(double,double,double,double)),this,SLOT(addWay(double,double,double,double)));
     timer = new QTimer();
-    connect(timer, &QTimer::timeout, ship, &Ship::slotGameTimer);
+    QObject::connect(timer, &QTimer::timeout, ship, &Ship::slotGameTimer);
+    //QObject::connect(timer, &QTimer::timeout, ship, &Ship::slotGameTimer);
 //    connect(timer, &QTimer::timeout, ways, &Ship::slotGameTimer);
     timer->start(1000 / 50);
 }
@@ -49,15 +53,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//void MainWindow::addWay(Ui::MainWindow* ui,double oldx,double oldy,double newx,double  newy )
-//{
-//    Way* newWay = new Way();
-//    newWay->line->setLine(oldx,oldy,this->pos().x(),this->pos().y());
-//    ways->append(newWay);
+void MainWindow::addWay(double oldx,double oldy,double newx,double  newy )
+{
+    qDebug()<<"add line";
+    Way* newWay = new Way();
+    newWay->line->setLine(oldx,oldy,newx,newy);
+    ways->append(newWay);
 
-//    scene->addItem(ways->at(numOfWays));
-//    numOfWays++;
-//}
+    scene->addItem(newWay);//(ways->at(numOfWays));
+    //newWay->setPos(0,0);
+    numOfWays++;
+}
 
 void MainWindow::addShip()
 {
