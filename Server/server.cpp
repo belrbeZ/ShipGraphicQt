@@ -64,7 +64,7 @@ void Server::sendShipInfo()
             clientConnection, SLOT(deleteLater()));
 
     QList <Ship> ships;
-    quint8 maxShipsNum = 5; //std::numeric_limits<quint8>::max()
+    quint8 maxShipsNum = 4; //std::numeric_limits<quint8>::max()
     for(int i = 0; i < random(1,maxShipsNum); i++){
         ships.append(Ship());
     }
@@ -84,7 +84,7 @@ void Server::sendShipInfo()
                    ships[i].getShipTotalDistance() << ships[i].getRoutingTime().addMSecs(initialTime.elapsed());
 
             // random changes in time
-            quint8 diff = 1;
+            quint8 diff = 30;
             //total distance change
             ships[i].setShipTotalDistance(ships[i].getShipTotalDistance() + ships[i].getShipVelocity());
 
@@ -95,7 +95,7 @@ void Server::sendShipInfo()
                                                 ships[i].getRoutingAngle() + diff));
             }
             else{
-                ships[i].setRoutingAngle(random(Ship::maxRoutingAngle, Ship::minRoutingAngle));
+                ships[i].setRoutingAngle(random(Ship:: minRoutingAngle , Ship::maxRoutingAngle));
             }
 
             //velocity change

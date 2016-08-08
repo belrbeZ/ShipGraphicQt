@@ -8,13 +8,13 @@ class Ship
 
 public:
     const static qint16 maxRoutingAngle = 180;
-    const static quint8 maxShipVelocity = 4;
+    const static quint8 maxShipVelocity = 50;
     const static quint8 maxVisibilityScopeAngle = 30;
-    const static quint8 maxVisibilityScopeLength = 5;
-    const static qint16 minRoutingAngle = -180;
+    const static quint8 maxVisibilityScopeLength = 40;
+    const static qint16 minRoutingAngle = 0;
     const static quint8 minShipVelocity = 0;
-    const static quint8 minVisibilityScopeAngle = 0;
-    const static quint8 minVisibilityScopeLength = 0;
+    const static quint8 minVisibilityScopeAngle = 1;
+    const static quint8 minVisibilityScopeLength = 1;
 
 private:
     static quint8 shipsNum;
