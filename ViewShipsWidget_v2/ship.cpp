@@ -160,7 +160,7 @@ void Ship::changeSizeOfShip(int newSize)
         QImage imageNew;
         if(imageNew.load(":/res/ship.png")){
             //image=imageNew.scaledToHeight(shipsSize/2, Qt::TransformationMode::FastTransformation);
-            image=imageNew.scaledToWidth(shipsSize, Qt::TransformationMode::FastTransformation);
+            image=imageNew.scaledToWidth(shipsSize);
             update();
         }
     }

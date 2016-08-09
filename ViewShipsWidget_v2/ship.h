@@ -10,6 +10,7 @@
 #include <QLine>
 #include <QVector>
 #include <QTime>
+#include <QtMath>
 //#include "ui_mainwindow.h"
 
 class Ship : public QObject, public QGraphicsItem
