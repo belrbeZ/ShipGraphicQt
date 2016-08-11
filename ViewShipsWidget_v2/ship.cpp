@@ -10,14 +10,14 @@ Ship::Ship(QObject *parent) :
     if(!image.load(":/res/ship.png"))
         qDebug()<<"Image is null!";
     else{
-        qDebug()<<"scaling from to "<<shipsSize;
+        qDebug()<<"scaling to "<<shipsSize;
         image=image.scaledToWidth(shipsSize);
     }
 
     angle = 0;     // Задаём угол поворота графического объекта
     setRotation(angle);     // Устанавилваем угол поворота графического объекта
     visibilityScopeLength=20;
-    visibilityScopeAngle=30;
+    visibilityScopeAngle=89;
 }
 
 Ship::~Ship()
@@ -29,7 +29,7 @@ QRectF Ship::boundingRect() const
 {
 
     double diagon = sqrt(shipsSize*shipsSize+image.height()*image.height());
-    double visib=visibilityScopeLength/cos(visibilityScopeAngle * PI / 180);
+    double visib=visibilityScopeLength*2/cos(visibilityScopeAngle * PI / 360);
     return QRectF(-((diagon<visib)?visib:diagon),-((diagon<visib)?visib:diagon),2*((diagon<visib)?visib:diagon),2*((diagon<visib)?visib:diagon));//(-25,-40,700,500);  /// Ограничиваем область, в которой лежит треугольник
     //return QRectF(-(image.height()+),-shipsSize,shipsSize+visibilityScopeAngle,image.height());
 }
@@ -43,7 +43,7 @@ void Ship::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     if(visibleAndWay){
             QPolygon polygon;   /// Используем класс полигона, чтобы отрисовать треугольник
             /// Помещаем координаты точек в полигональную модель
-            polygon << QPoint(0,0) << QPoint(visibilityScopeLength/cos(visibilityScopeAngle* PI / 180),-visibilityScopeLength/tan(visibilityScopeAngle* PI / 180)) << QPoint(-visibilityScopeLength/cos(visibilityScopeAngle* PI / 180),-visibilityScopeLength/tan(visibilityScopeAngle* PI / 180));
+            polygon << QPoint(0,0) << QPoint(-visibilityScopeLength*2*tan(visibilityScopeAngle* PI / 360),-visibilityScopeLength*2/cos(visibilityScopeAngle* PI / 360)) << QPoint(visibilityScopeLength*2*tan(visibilityScopeAngle* PI / 360),-visibilityScopeLength*2/cos(visibilityScopeAngle* PI / 360));
             painter->setBrush(Qt::red);     /// Устанавливаем кисть, которой будем отрисовывать объект
             painter->drawPolygon(polygon);  /// Рисуем треугольник по полигональной модели
     }

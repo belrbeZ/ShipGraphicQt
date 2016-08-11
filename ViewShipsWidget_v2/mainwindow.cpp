@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); /// Отключаем скроллбар по горизонтали
     ui->graphicsView->setAlignment(Qt::AlignCenter);                        // Делаем привязку содержимого к центру
     ui->graphicsView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);    // Растягиваем содержимое по виджету
-
+//ui->graphicsView->setbac
     ui->widgetMenu->setVisible(false);
     ui->OnVisibleAndWayBut->setDisabled(true);
 
