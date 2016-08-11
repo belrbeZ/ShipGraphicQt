@@ -16,6 +16,7 @@ Ship::Ship(QObject *parent) :
 
     angle = 0;     // Задаём угол поворота графического объекта
     setRotation(angle);     // Устанавилваем угол поворота графического объекта
+    shipID="0";
     visibilityScopeLength=20;
     visibilityScopeAngle=89;
 }
@@ -36,9 +37,11 @@ QRectF Ship::boundingRect() const
 
 void Ship::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    //qDebug()<<"paint:"<<shipID;
+    qDebug()<<"paint:"<<shipID;
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->drawImage(-shipsSize/2,0,image);//-shipsSize/2+shipsSize/20,shipsSize/2
+
+    painter->drawText(shipsSize/2+5,5,shipID);
 
     if(visibleAndWay){
             QPolygon polygon;   /// Используем класс полигона, чтобы отрисовать треугольник
@@ -201,6 +204,7 @@ QTime Ship::getRoutingTime(){
 
 void Ship::setShipID(QString sID){
     shipID = sID;
+
 }
 
 void Ship::setRoutingAngle(qint16 rAngle){

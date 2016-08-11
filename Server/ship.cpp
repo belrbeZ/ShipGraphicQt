@@ -5,7 +5,7 @@ quint8 Ship::shipsNum = 0;
 
 Ship::Ship(){
     shipsNum++;
-    shipID = QString(shipsNum);
+    shipID = QString::number(shipsNum);
     routingAngle = random(minRoutingAngle, maxRoutingAngle);
     shipVelocity = random(minShipVelocity, maxShipVelocity);
     visibilityScopeAngle = random(minVisibilityScopeAngle, maxVisibilityScopeAngle);

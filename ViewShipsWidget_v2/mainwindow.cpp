@@ -88,21 +88,16 @@ void MainWindow::addShip()
 
 void MainWindow::changeShipFieldsById(quint8 shipsNum,QVector<QString> *shipIDVec , QVector<qint16> *routingAngleVec , QVector<quint8> *shipVelocityVec ,  QVector<quint8> *visibilityScopeAngleVec, QVector<quint8> *visibilityScopeLengthVec ,QVector<quint64> *shipTotalDistanceVec , QVector<QTime> *routingTimeVec)
 {
-    qInfo()<<"data taked, shipsNum="<<shipsNum<<"\nshipId=";
+    qInfo()<<"data taked, shipsNum="<<shipsNum;//<<"\nshipId=";
     if(shipsNum==0)return;
-    //info="shipsNum="+shipsNum;
     ui->TextInfo->clear();
     ui->TextInfo->clearHistory();
     if(ships->size()==0&&Ship::numShips==0){
         Ship::numShips=shipsNum;
         addShip();
         for(int i=0;i<ships->size();i++){
-//            info+= "\nTaked from server: shipID=" + shipIDVec->at(i)+ "routingAngle="  + routingAngleVec->at(i)+ "shipVelocity="  + shipVelocityVec->at(i) + "visibilityScopeAnglel=" + visibilityScopeAngleVec->at(i)+ "visibilityScopeLength="  +
-//                visibilityScopeLengthVec->at(i) + "shipTotalDistance=" + shipTotalDistanceVec->at(i) + "routingTime=" + routingTimeVec->at(i).toString();
-       //ui->TextInfo->setUpdatesEnabled(false);
             ui->TextInfo->insertPlainText("\nTaked from server: shipID=" + (QString)shipIDVec->at(i)+ "routingAngle="  + QString::number(routingAngleVec->at(i))+ "shipVelocity="  + QString::number(shipVelocityVec->at(i)) + "visibilityScopeAnglel=" + QString::number(visibilityScopeAngleVec->at(i))+ "visibilityScopeLength="  +
                                                       QString::number(visibilityScopeLengthVec->at(i)) + "shipTotalDistance=" +QString::number(shipTotalDistanceVec->at(i)) + "routingTime=" + routingTimeVec->at(i).toString());
-            //ui->TextInfo->setUpdatesEnabled(true);
             ships->at(i)->setShipID(shipIDVec->at(i));
             ships->at(i)->setRoutingAngle(routingAngleVec->at(i));
             ships->at(i)->setShipVelocity(shipVelocityVec->at(i));
@@ -115,21 +110,11 @@ void MainWindow::changeShipFieldsById(quint8 shipsNum,QVector<QString> *shipIDVe
             QObject::connect(this,SIGNAL(sizeOfShipChanged(int)),ships->at(i),SLOT(changeSizeOfShip(int)));
             QObject::connect(this,SIGNAL(updateShipsAndWays()),ships->at(i),SLOT(updateShips()));
         }
-        //ui->TextInfo->setText(info);
     }
     else{
         for(int i=0;i<Ship::numShips;i++){
-            //if(ships->at(i)->getShipID()==shipID){
-                //qInfo()<< "Vectors from server: shipID=" << shipIDVec->at(i)<< "routingAngle="  << routingAngleVec->at(i)<< "shipVelocity="  << shipVelocityVec->at(i) << "visibilityScopeAnglel=" << visibilityScopeAngleVec->at(i)<< "visibilityScopeLength="  <<
-                //visibilityScopeLengthVec->at(i) << "shipTotalDistance=" << shipTotalDistanceVec->at(i) << "routingTime=" << routingTimeVec->at(i).toString();
-//                qInfo()<< "Before change: shipID=" << ships->at(i)->getShipID()<< "routingAngle="  << ships->at(i)->getRoutingAngle()<< "shipVelocity="  << ships->at(i)->getShipVelocity() << "visibilityScopeAnglel=" << ships->at(i)->getVisibilityScopeAngle()<< "visibilityScopeLength="  <<
-//                    ships->at(i)->getVisibilityScopeLength() << "shipTotalDistance=" << ships->at(i)->getShipTotalDistance() << "routingTime=" << ships->at(i)->getRoutingTime().toString();
-            //ui->TextInfo->setUpdatesEnabled(false);
-                qDebug()<<"text changeShipFieldsById";
             ui->TextInfo->insertPlainText("\nTaked from server: shipID=" + shipIDVec->at(i)+ "routingAngle="  + QString::number(routingAngleVec->at(i))+ "shipVelocity="  + QString::number(shipVelocityVec->at(i)) + "visibilityScopeAnglel=" + QString::number(visibilityScopeAngleVec->at(i))+ "visibilityScopeLength="  +
                                                            QString::number(visibilityScopeLengthVec->at(i)) + "shipTotalDistance=" +QString::number(shipTotalDistanceVec->at(i)) + "routingTime=" + routingTimeVec->at(i).toString());
-                qDebug()<<"text changeShipFieldsById";
-            //ui->TextInfo->setUpdatesEnabled(true);
 
                  ships->at(i)->setRoutingAngle(routingAngleVec->at(i));
                 ships->at(i)->setShipVelocity(shipVelocityVec->at(i));
@@ -137,18 +122,7 @@ void MainWindow::changeShipFieldsById(quint8 shipsNum,QVector<QString> *shipIDVe
                 ships->at(i)->setVisibilityScopeLength(visibilityScopeLengthVec->at(i));
                 ships->at(i)->setShipTotalDistance(shipTotalDistanceVec->at(i));
                 ships->at(i)->setRoutingTime(routingTimeVec->at(i));
-qDebug()<<" changeShipFieldsById";
-//                info+= "\nTaked from server: shipID=" + shipIDVec->at(i)+ "routingAngle="  + routingAngleVec->at(i)+ "shipVelocity="  + shipVelocityVec->at(i) + "visibilityScopeAnglel=" + visibilityScopeAngleVec->at(i)+ "visibilityScopeLength="  +
-//                    visibilityScopeLengthVec->at(i) + "shipTotalDistance=" + shipTotalDistanceVec->at(i) + "routingTime=" + routingTimeVec->at(i).toString();
-
-//                qInfo()<< "After change: shipID=" << ships->at(i)->getShipID()<< "routingAngle="  << ships->at(i)->getRoutingAngle()<< "shipVelocity="  << ships->at(i)->getShipVelocity() << "visibilityScopeAnglel=" << ships->at(i)->getVisibilityScopeAngle()<< "visibilityScopeLength="  <<
-//                    ships->at(i)->getVisibilityScopeLength() << "shipTotalDistance=" << ships->at(i)->getShipTotalDistance() << "routingTime=" << ships->at(i)->getRoutingTime().toString();
-
-                //ships->at(i)->shipsFieldsChangedAction();
-                //break;
-            //}
         }
-        //ui->TextInfo->setText(info);
         emit shipsFieldsChanged();//?
     }
 

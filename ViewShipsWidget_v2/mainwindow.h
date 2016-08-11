@@ -31,7 +31,6 @@ private:
     QVector<Way*> *ways;
     int numOfWays;
 
-    //QString info;
 signals:
     void shipsFieldsChanged();
     void sizeOfShipChanged(int);
