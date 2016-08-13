@@ -93,7 +93,7 @@ public slots:
     void setRoutingTime(QTime routingTime);
     void setPoint(QPoint point);
 
-    void changeShipsSize();
+    Q_INVOKABLE void changeShipsSize();
 signals:
     void shipIDChanged(QString shipID);
     void routingAngleChanged(qint16 routingAngle);

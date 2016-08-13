@@ -5,7 +5,7 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
 
-import Ship 1.0
+//import Ship 1.0
 ApplicationWindow {
     visible: true
     width: 640
@@ -16,9 +16,9 @@ ApplicationWindow {
     Connections{
         target: appCore
         onSendToQml:{   //если сигнал sendToQml
-            labelCount.text = appCore.count
+            labelCount.text = count
         }
-        Component.onCompleted: appCore.newGameState(gameArea, ApplicationWindow.width, ApplicationWindow.height)
+        //Component.onCompleted: appCore.newGameState(gameArea, ApplicationWindow.width, ApplicationWindow.height)
     }
 
     MainForm {

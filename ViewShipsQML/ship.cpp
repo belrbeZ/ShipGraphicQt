@@ -245,7 +245,7 @@ void Ship::paintTriangle(QPainter *painter)
     numLines+=3;
 }
 
-Q_INVOKABLE void Ship::changeShipsSize()
+void Ship::changeShipsSize()
 {
     image.scaledToHeight(shipsSize);
     image.scaledToWidth(shipsSize);

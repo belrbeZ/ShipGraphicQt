@@ -9,7 +9,7 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    qmlRegisterType<Ship>("Ship",1,0,"Ship");
+    //qmlRegisterType<Ship>("Ship",1,0,"Ship");
 
     QQmlApplicationEngine engine;
 

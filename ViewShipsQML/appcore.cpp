@@ -13,18 +13,18 @@ void AppCore::recieveFromQml()
 void AppCore::recieveFromQmlSlider(int newCount)
 {
     count=newCount;
-    Ship::shipsSize=newCount;
+    //Ship::shipsSize=newCount;
 
         //image.scaledToHeight(shipsSize);
         //image.scaledToWidth(shipsSize);
 
-    emit sendToQml(Ship::shipsSize);
+    emit sendToQml(count);
 }
 
-void newGameState( gameArea,int windowWidth,int windowHeight)
-{
-    //emit createShip();
-}
+//void newGameState( gameArea,int windowWidth,int windowHeight)
+//{
+//    //emit createShip();
+//}
 
 //void addShip()
 //{
